@@ -13,9 +13,9 @@ import { BarChart3, ArrowUpRight, Database, ArrowRight } from 'lucide-react';
 const Page = () => {
   return (
     <>
-      {/* Desktop and Tablet View */}
-      <div className="font-serif bg-white text-black h-screen w-full overflow-hidden relative hidden md:block">
-        {/* Desktop content from the first code */}
+
+      <div className="font-serif bg-white text-black h-screen w-full overflow-hidden relative hidden lg:block">
+ 
         <div className="absolute inset-0">
         <motion.div
           className="bg-gray-200 lg:w-64 lg:h-64 lg:rounded-3xl lg:rotate-45 lg:relative lg:bottom-48 lg:right-20 shadow-xl"
@@ -123,7 +123,7 @@ const Page = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 2 }}
           >
-            this is team qubit here and we are working on a webscraping project
+             Revolutionizing web scraping with cutting-edge technology 
           </motion.div>
 
           <motion.div
@@ -132,18 +132,18 @@ const Page = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 2.2 }}
           >
-            <input
+            {/* <input
               type="text"
               className="w-full h-12 pl-4 pr-32 rounded-full border border-blue-100 bg-gray-100"
               placeholder="Enter your email"
-            />
+            /> */}
             <Link href="/SignUp">
             <motion.button
-              className="absolute top-0 right-0 h-12 bg-blue-600 text-white px-6 rounded-full"
+              className="relative left-32 top-0 right-0 h-12 bg-blue-600 text-white px-6 rounded-full"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               >
-              Start Trial
+             Get Started
             </motion.button>
               </Link>
           </motion.div>
@@ -201,7 +201,7 @@ const Page = () => {
       </div>
 
       {/* Mobile View */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen p-8 flex flex-col items-center justify-center relative overflow-hidden md:hidden">
+      <div className="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen sm:p-8 flex flex-col items-center justify-center relative overflow-hidden lg:hidden">
         {/* Background Elements */}
         <motion.div
           className="absolute inset-0 z-0"
@@ -237,13 +237,13 @@ const Page = () => {
 
         {/* Content */}
         <motion.div
-          className="w-full max-w-4xl space-y-12 text-center relative z-10"
+          className="w-full max-w-4xl sm:space-y-12 space-y-5 text-center relative z-10"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <motion.h1
-            className="font-extrabold text-5xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600"
+            className="font-extrabold text-5xl sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -251,7 +251,7 @@ const Page = () => {
             Qubit
           </motion.h1>
           <motion.div
-            className="text-gray-700 text-lg md:text-xl max-w-2xl mx-auto"
+            className="text-gray-700 sm:text-lg md:text-xl max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -265,25 +265,20 @@ const Page = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <input
-              type="email"
-              className="w-full h-12 md:h-14 pl-4 md:pl-6 pr-24 md:pr-32 rounded-full border-2 border-blue-300 bg-white text-base md:text-lg focus:outline-none focus:border-blue-500 transition-colors"
-              placeholder="Enter your email"
-            />
             <Link href="/SignUp">
               <motion.button
-                className="absolute top-1 right-1 h-10 md:h-12 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 md:px-6 rounded-full text-base md:text-lg font-semibold flex items-center"
+                className="relative top-1 left-40 h-10 md:h-12 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 md:px-6 rounded-full text-base md:text-lg font-semibold flex items-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Start Trial
-                <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
+                Get Started
+                <ArrowRight className="ml-1 sm:ml-2 w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
               </motion.button>
             </Link>
           </motion.div>
         </motion.div>
 
-        <div className="w-full max-w-4xl grid grid-cols-1 gap-6 mt-12 relative z-10">
+        <div className="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12 relative z-10">
           {[
             { icon: ArrowUpRight, title: "Efficient Data Extraction", description: "Extract data with unparalleled speed and accuracy" },
             { icon: BarChart3, title: "Advanced Analytics", description: "Gain insights with our powerful analytical tools" },
@@ -291,14 +286,14 @@ const Page = () => {
           ].map((feature, index) => (
             <motion.div
               key={index}
-              className="bg-white bg-opacity-90 p-5 rounded-xl flex flex-col items-center text-center shadow-lg"
+              className="bg-white bg-opacity-90 p-4 sm:p-5 rounded-xl flex flex-col items-center text-center shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 + index * 0.2 }}
             >
-              <feature.icon className="w-10 h-10 text-blue-600 mb-3" />
-              <h2 className="text-lg font-bold text-gray-800 mb-2">{feature.title}</h2>
-              <p className="text-sm text-gray-600">{feature.description}</p>
+              <feature.icon className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600 mb-2 sm:mb-3" />
+              <h2 className="text-base sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2">{feature.title}</h2>
+              <p className="text-xs sm:text-sm text-gray-600">{feature.description}</p>
             </motion.div>
           ))}
         </div>
@@ -308,7 +303,5 @@ const Page = () => {
 };
 
 export default Page;
-
-
 
 
