@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import GaugeChart from "../../public/gauge_example2.png";
 import BarChart from "../../public/BarChart.jpg";
 import Piechart from "../../public/PieChart.jpg";
-import Logo from "../../public/logo.png";
+import Qubit from "../../public/Qubit.png";
 import Link from "next/link";
 import { BarChart3, ArrowUpRight, Database, ArrowRight } from 'lucide-react';
 
@@ -71,7 +71,7 @@ const Page = () => {
           transition={{ duration: 0.5, delay: 1 }}
         >
           <Image
-            src={Logo}
+            src={Qubit}
             className=" h-64 w-64 relative bottom-6"
             alt="Logo"
           />
