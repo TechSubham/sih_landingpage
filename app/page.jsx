@@ -121,7 +121,7 @@ const Page = () => {
               className="w-full h-12 pl-4 pr-32 rounded-full border border-blue-100 bg-gray-100"
               placeholder="Enter your email"
             /> */}
-              <Link href="/SignUp">
+              <Link href="/https://rvrs.teamqubit.in/SignUp">
                 <motion.button
                   className="relative top-0 block mx-auto h-12 bg-blue-600 text-white px-6 rounded-full"
                   whileHover={{ scale: 1.05 }}
@@ -248,7 +248,7 @@ const Page = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <Link href="/SignUp">
+            <Link href="/https://rvrs.teamqubit.in/SignUp">
               <motion.button
                 className="relative top-1 h-10 md:h-12 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 md:px-6 rounded-full text-base md:text-lg font-semibold flex items-center mx-auto"
                 whileHover={{ scale: 1.05 }}
