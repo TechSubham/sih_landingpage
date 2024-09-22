@@ -10,7 +10,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import Logos from "../public/Qubit.png";
 import { CarouselCard } from "@/components/StyleComponents/Carousel";
 import AboutUs from "./Elements/AboutUs";
-import Link from "next/link";
+
 
 // const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'] });
 
@@ -277,9 +277,7 @@ const Page = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
-              <Link href="https://rvrs.teamqubit.in/SignUp">
               <Button />
-              </Link>
             </motion.div>
           </div>
           <motion.div
