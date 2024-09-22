@@ -1,302 +1,352 @@
 "use client";
-
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import GaugeChart from "../public/gauge_example2.png";
-import BarChart from "../public/BarChart.jpg";
-import Piechart from "../public/PieChart.jpg";
-import Qubit from "../public/Qubit.png";
-import Link from "next/link";
-import { BarChart3, ArrowUpRight, Database, ArrowRight } from "lucide-react";
+import { motion, useAnimation } from "framer-motion";
+import Mobilebg from "../public/mobile.png";
+import Button from "./Elements/button";
+import Profile2 from "../public/profile2.jpg";
+import Profile4 from "../public/profile4.jpg";
+import { Plus_Jakarta_Sans } from "next/font/google";
+import Logos from "../public/Qubit.png";
+import { CarouselCard } from "@/components/StyleComponents/Carousel";
+import AboutUs from "./Elements/AboutUs";
+import { ArrowRight } from "lucide-react";
+
+// const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'] });
 
 const Page = () => {
+  const timelineRef = useRef(null);
+  const pieChartRef = useRef(null);
+  const [timelineVisible, setTimelineVisible] = useState(false);
+  const [pieChartVisible, setPieChartVisible] = useState(false);
+  const timelineControls = useAnimation();
+  const pieChartControls = useAnimation();
+
+  useEffect(() => {
+    const timelineObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimelineVisible(true);
+          timelineControls.start("visible");
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const pieChartObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setPieChartVisible(true);
+          pieChartControls.start("visible");
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (timelineRef.current) {
+      timelineObserver.observe(timelineRef.current);
+    }
+
+    if (pieChartRef.current) {
+      pieChartObserver.observe(pieChartRef.current);
+    }
+
+    return () => {
+      if (timelineRef.current) {
+        timelineObserver.unobserve(timelineRef.current);
+      }
+      if (pieChartRef.current) {
+        pieChartObserver.unobserve(pieChartRef.current);
+      }
+    };
+  }, [timelineControls, pieChartControls]);
+
+  const timelineVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
+
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const slideIn = {
+    hidden: { x: -100, opacity: 0 },
+    visible: { x: 0, opacity: 1 },
+  };
+
   return (
     <>
-      <div className="bg-white text-black h-screen w-full overflow-hidden relative hidden lg:block">
-        <div className="absolute inset-0">
-          <motion.div
-            className="bg-gray-200 lg:w-64 lg:h-64 lg:rounded-3xl lg:rotate-45 lg:relative lg:bottom-48 lg:right-20 shadow-xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          ></motion.div>
-          <motion.div
-            className="bg-blue-600 lg:w-[95%] lg:h-[80%] lg:relative lg:rotate-45 lg:bottom-[85%] lg:rounded-3xl lg:left-[15%] shadow-2xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          ></motion.div>
-          <motion.div
-            className="lg:w-[30%] lg:h-[30%] lg:relative lg:bottom-[135%] lg:-rotate-45 lg:left-[40.5%] lg:bg-black lg:bg-opacity-10 shadow-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          ></motion.div>
-          <motion.div
-            className="lg:w-[70%] lg:h-[30%] lg:rounded-3xl lg:relative lg:bottom-[165%] lg:-rotate-45 lg:left-[48.9%] lg:bg-black lg:bg-opacity-10 shadow-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          ></motion.div>
-          <motion.div
-            className="lg:bg-white lg:block hidden lg:w-52 lg:h-52 lg:relative lg:bottom-[162%] lg:left-[45%] lg:-rotate-45 lg:border lg:rounded-3xl lg:shadow-2xl z-10"
-            style={{ boxShadow: "10 40px 10px 0 rgba(255, 255, 255, 0.6)" }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-          >
-            <Image src={GaugeChart} className="w-full mt-7" alt="Gauge Chart" />
-            <motion.button
-              className="border mt-4 border-blue-600 py-2 px-4 block mx-auto rounded-xl bg-blue-600 text-white"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Improve
-            </motion.button>
-          </motion.div>
-          <motion.div
-            className="bg-white lg:w-52 lg:h-52 lg:block hidden lg:relative lg:bottom-[160%] lg:left-[60%] lg:-rotate-45 border rounded-3xl shadow-2xl z-20 "
-            style={{ boxShadow: "10 40px 10px 0 rgba(255, 255, 255, 0.6)" }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1 }}
-          >
-            <Image
-              src={Qubit}
-              className=" h-64 w-64 relative bottom-6"
-              alt="Logo"
-            />
-          </motion.div>
-          <motion.div
-            className="bg-white lg:w-52 lg:h-52 lg:relative lg:block hidden lg:bottom-[220%] lg:left-[70%] lg:-rotate-45 border rounded-3xl shadow-2xl z-30"
-            style={{ boxShadow: "10 40px 10px 0 rgba(255, 255, 255, 0.6)" }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.2 }}
-          >
-            <Image src={BarChart} className="p-2" alt="Bar Chart" />
-          </motion.div>
-          <motion.div
-            className="bg-white lg:w-52 lg:h-52 lg:relative lg:block hidden lg:bottom-[210%] lg:left-[82%] lg:-rotate-45 border rounded-3xl shadow-2xl z-40"
-            style={{ boxShadow: "10 40px 10px 0 rgba(255, 255, 255, 0.6)" }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.4 }}
-          >
-            <Image src={Piechart} className="w-full mt-7" alt="Pie Chart" />
-          </motion.div>
+      <div className="relative min-h-screen overflow-hidden  ">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-black"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#90caf9_1px,transparent_1px),linear-gradient(to_bottom,#09baf3_1px,transparent_1px)] bg-[size:8rem_8rem] opacity-80"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(circle_at_top,#ffffff10,transparent_90%)]"></div>
+          <div className="absolute inset-0  bg-[radial-gradient(1500px_2500px_ellipse_at_center,_var(--tw-gradient-stops))] from-blue-800 via-black to-black opacity-90"></div>
+        </div>
 
-          <motion.div
-            className="hidden lg:block lg:relative lg:bottom-[245%] lg:w-[30%] lg:ml-36 lg:h-[50%] lg:space-y-5"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 1.6 }}
-          >
-            <motion.h1
-              className="text-center font-extrabold text-7xl text-blue-950"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1.8 }}
-            >
-              Qubit
-            </motion.h1>
+        <div className="relative z-10">
+          <nav className="p-4 bg-black  shadow-2xl shadow-black">
             <motion.div
-              className="text-center text-xl"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 2 }}
+              className="container mx-auto flex justify-between h-10 mt-2"
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
             >
-              Revolutionizing web scraping with cutting-edge technology
-            </motion.div>
-
-            <motion.div
-              className="relative w-[90%] h-16 ml-5"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 2.2 }}
-            >
-              {/* <input
-              type="text"
-              className="w-full h-12 pl-4 pr-32 rounded-full border border-blue-100 bg-gray-100"
-              placeholder="Enter your email"
-            /> */}
-              <Link href="/https://rvrs.teamqubit.in/SignUp">
-                <motion.button
-                  className="relative top-0 block mx-auto h-12 bg-blue-600 text-white px-6 rounded-full"
-                  whileHover={{ scale: 1.05 }}
+              <div className="text-3xl flex font-bold text-white">QUBIT</div>
+              <div className="flex space-x-4">
+                <motion.span
+                  className="text-gray-500 hover:text-white hover:cursor-pointer text-xl transition font-semibold"
+                  whileHover={{ scale: 1.1, color: "#ffffff" }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Get Started
-                </motion.button>
-              </Link>
+                  Scraping
+                </motion.span>
+                <motion.span
+                  className="text-gray-500 hover:text-white hover:cursor-pointer text-xl transition font-semibold"
+                  whileHover={{ scale: 1.1, color: "#ffffff" }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Services
+                </motion.span>
+                <motion.span
+                  className="text-gray-500 hover:text-white hover:cursor-pointer text-xl transition font-semibold"
+                  whileHover={{ scale: 1.1, color: "#ffffff" }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  About Us
+                </motion.span>
+              </div>
             </motion.div>
-          </motion.div>
+          </nav>
 
-          <motion.div
-            className="lg:relative p-4 lg:bottom-[245%] border lg:w-[25%] lg:h-24 lg:ml-20 bg-gray-100 rounded-xl flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 2.4 }}
-          >
-            <ArrowUpRight className="w-12 h-12 text-blue-600" />
-            <h1 className="text-xl xl:text-2xl ml-2 font-medium">Efficient Data Extraction</h1>
-          </motion.div>
-          <motion.div
-            className="lg:relative p-4 lg:bottom-[257%] border lg:w-[25%] lg:h-24 lg:ml-[35%] bg-gray-100 rounded-xl flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 2.6 }}
-          >
-            <BarChart3 className="w-12 h-12 text-green-600" />
-            <h1 className="text-xl xl:text-2xl ml-2 font-medium">Advanced Analytics</h1>
-          </motion.div>
-          <motion.div
-            className="lg:relative p-4 lg:bottom-[269%] lg:border lg:w-[25%] lg:h-24 lg:ml-[65%] bg-gray-100 rounded-xl flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 2.8 }}
-          >
-            <Database className="w-12 h-12 text-yellow-600" />
-            <h1 className="text-xl xl:text-2xl ml-2 font-medium">Scalable Infrastructure</h1>
-          </motion.div>
-          <motion.div
-            className="lg:w-[70%] lg:block hidden lg:h-[30%] rounded-3xl lg:relative lg:bottom-[359%] lg:-rotate-45 lg:left-[64.5%] bg-black bg-opacity-10 shadow-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 3 }}
-          ></motion.div>
-          <motion.div
-            className="lg:w-[70%] lg:h-[30%] lg:relative lg:bottom-[395%] lg:rotate-45 lg:left-[30.3%] bg-black bg-opacity-10 shadow-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 3.2 }}
-          ></motion.div>
-          <motion.div
-            className="lg:w-[70%] lg:h-[30%] lg:relative lg:bottom-[415%] lg:rotate-45 lg:left-[65.3%] bg-black bg-opacity-10 shadow-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 3.4 }}
-          ></motion.div>
-          {/* ... (All the motion.div elements from the first code) ... */}
-          {/* Make sure to include all the elements up to the last motion.div */}
-        </div>
-      </div>
+          <div className="grid grid-cols-2">
+            <div className="text-black">
+              <div className="mt-52 ml-32">
+                {/* Animated Header */}
+                <motion.h1
+                  className="font-bold text-2xl text-gray-600 h-10"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1 }}
+                >
+                  {"Keep Your device Safe".split("").map((char, index) => (
+                    <motion.span
+                      key={index}
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1, duration: 0.2 }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </motion.h1>
 
-      {/* Mobile View */}
-      <div className="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen sm:p-8 flex flex-col items-center justify-center relative overflow-hidden lg:hidden">
-        {/* Background Elements */}
-        <motion.div
-          className="absolute inset-0 z-0"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <motion.div
-            className="absolute w-[200%] h-[50%] bg-blue-200 opacity-30 rounded-[100%] top-[-25%] left-[-50%] transform rotate-[-15deg]"
-            animate={{
-              y: [0, 20, 0],
-              rotate: [-15, -10, -15],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
-          <motion.div
-            className="absolute w-[200%] h-[50%] bg-indigo-200 opacity-30 rounded-[100%] bottom-[-25%] right-[-50%] transform rotate-[15deg]"
-            animate={{
-              y: [0, -20, 0],
-              rotate: [15, 10, 15],
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
-        </motion.div>
+                {/* Animated Text Blocks */}
+                <motion.p
+                  className="text-5xl font-extrabold text-white h-14"
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.8, duration: 0.8 }}
+                >
+                  Real Time Vulnerability
+                </motion.p>
 
-        {/* Content */}
-        <motion.div
-          className="w-full max-w-4xl sm:space-y-6 space-y-5 text-center relative z-10"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h1
-            className="font-extrabold text-5xl sm:text-5xl bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Qubit
-          </motion.h1>
-          <motion.div
-            className="text-gray-700 sm:text-lg md:text-xl max-w-2xl mx-auto px-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Revolutionizing web scraping with cutting-edge technology
-          </motion.div>
+                <motion.p
+                  className="text-5xl font-extrabold text-blue-600 h-14"
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.8, duration: 0.8 }}
+                >
+                  Reporting System with
+                </motion.p>
 
-          <motion.div
-            className="relative w-full max-w-md mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <Link href="/https://rvrs.teamqubit.in/SignUp">
-              <motion.button
-                className="relative top-1 h-10 md:h-12 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 md:px-6 rounded-full text-base md:text-lg font-semibold flex items-center mx-auto"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                <motion.p
+                  className="text-5xl font-extrabold text-white h-14"
+                  initial={{ opacity: 0, x: -100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.8, duration: 0.8 }}
+                >
+                  Cutting Edge Technology
+                </motion.p>
+              </div>
+              <motion.div
+                className="mt-5 ml-24"
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
               >
-                Get Started
-                <ArrowRight className="ml-1 sm:ml-2 w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
-              </motion.button>
-            </Link>
-          </motion.div>
-        </motion.div>
-
-        <div className="w-full max-w-4xl p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12 relative z-10">
-          {[
-            {
-              icon: ArrowUpRight,
-              title: "Efficient Data Extraction",
-              description: "Extract data with unparalleled speed and accuracy",
-            },
-            {
-              icon: BarChart3,
-              title: "Advanced Analytics",
-              description: "Gain insights with our powerful analytical tools",
-            },
-            {
-              icon: Database,
-              title: "Scalable Infrastructure",
-              description: "Grow your data operations without limits",
-            },
-          ].map((feature, index) => (
+                <Button />
+              </motion.div>
+            </div>
             <motion.div
-              key={index}
-              className="bg-white bg-opacity-90 p-4 sm:p-5 rounded-xl flex flex-col items-center text-center shadow-lg"
+              className="text-black"
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+            >
+              <Image src={Mobilebg} alt="mobilebg" className="mt-8" />
+            </motion.div>
+          </div>
+
+          <div className="mt-32">
+            <motion.div
+              className="text-center mb-16"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 + index * 0.2 }}
+              transition={{ duration: 0.5 }}
             >
-              <feature.icon className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600 mb-2 sm:mb-3" />
-              <h2 className="text-base sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2">
-                {feature.title}
+              <h2 className="text-5xl font-bold">
+                <span className="text-white">Team </span>
+                <span className="text-blue-600">Qubit </span>
+                <span className="text-white">Revolutionizing Web Scraping</span>
               </h2>
-              <p className="text-xs sm:text-sm text-gray-600">
-                {feature.description}
-              </p>
             </motion.div>
-          ))}
+
+            <div ref={timelineRef} className="mt-20 px-4 relative">
+              <div className="absolute left-1/2 h-full w-1 bg-blue-200 transform -translate-x-1/2"></div>
+              <motion.div
+                className="space-y-24 relative"
+                variants={timelineVariants}
+                initial="hidden"
+                animate={timelineControls}
+              >
+                <motion.div
+                  variants={itemVariants}
+                  className="flex items-center mb-16"
+                >
+                  <div className="w-5/12 pr-8">
+                    <motion.div
+                      className="bg-white p-6 relative left-12 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-right"
+                      whileHover={{ y: -5 }}
+                    >
+                      <h3 className="text-xl font-semibold mb-2 text-blue-600">
+                        Efficient Data Extraction
+                      </h3>
+                      <p className="text-gray-700">
+                        Efficient data extraction employs methods like
+                        throttling and IP rotation to gather data quickly while
+                        minimizing risks of website blocking.
+                      </p>
+                    </motion.div>
+                  </div>
+                  <div className="w-2/12 flex justify-center">
+                    <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center z-10">
+                      <ArrowRight className="text-white" size={24} />
+                    </div>
+                  </div>
+                  <div className="w-5/12 pl-8"></div>
+                </motion.div>
+
+                <motion.div
+                  variants={itemVariants}
+                  className="flex items-center mb-16"
+                >
+                  <div className="w-5/12 pr-8"></div>
+                  <div className="w-2/12 flex justify-center">
+                    <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center z-10">
+                      <ArrowRight className="text-white" size={24} />
+                    </div>
+                  </div>
+                  <div className="w-5/12 pl-8">
+                    <motion.div
+                      className="bg-white p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-left"
+                      whileHover={{ y: -5 }}
+                    >
+                      <h3 className="text-xl font-semibold mb-2 text-blue-600">
+                        Advanced Analytics
+                      </h3>
+                      <p className="text-gray-700">
+                        Advanced analytics utilizes sophisticated techniques to
+                        analyze data, providing valuable insights from web
+                        scraping for informed business decisions and trend
+                        analysis.
+                      </p>
+                    </motion.div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  variants={itemVariants}
+                  className="flex items-center mb-16"
+                >
+                  <div className="w-5/12 pr-8">
+                    <motion.div
+                      className="bg-white p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 text-right"
+                      whileHover={{ y: -5 }}
+                    >
+                      <h3 className="text-xl font-semibold mb-2 text-blue-600">
+                        Scalable Infrastructure
+                      </h3>
+                      <p className="text-gray-700">
+                        Scalable infrastructure allows seamless growth,
+                        efficiently managing increased workloads in web scraping
+                        to ensure optimal performance and resource allocation.
+                      </p>
+                    </motion.div>
+                  </div>
+                  <div className="w-2/12 flex justify-center">
+                    <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center z-10">
+                      <ArrowRight className="text-white" size={24} />
+                    </div>
+                  </div>
+                  <div className="w-5/12 pl-8"></div>
+                </motion.div>
+              </motion.div>
+            </div>
+          </div>
+
+          <div ref={pieChartRef} className="mt-24 pb-20">
+            <motion.div
+              className="text-5xl font-bold text-center mb-10"
+              initial={{ opacity: 0, y: 50 }}
+              animate={pieChartVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5 }}
+            >
+              <span className="text-white">Services Provided by </span>
+              <span className="text-blue-600">Qubit </span>
+            </motion.div>
+            <motion.div
+              className="flex justify-center"
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <motion.div
+                className="mb-20 mt-20 w-full max-w-4xl"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              >
+                <CarouselCard />
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
+      <AboutUs />
     </>
   );
 };
