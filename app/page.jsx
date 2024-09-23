@@ -230,7 +230,7 @@ const Page = () => {
            <motion.div
       initial={{ height: 0, opacity: 0 }}
       variants={timelineVariants}
-      animate={{ height: ["530px", "680px"], opacity: 1 }}
+      animate={{ height: ["530px", "530px"], opacity: 1 }}
       transition={{ duration: 1, ease: "easeInOut" }}
       className="absolute left-1/2 bottom-[70px] sm:bottom-[90px] w-[2px] sm:w-[4px] bg-gray-500 transform -translate-x-1/2"
     
