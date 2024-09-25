@@ -45,9 +45,6 @@ export function LineChartComponent() {
     <Card className="w-full border-none bg-transparent shadow-none">
       <CardHeader className="items-center pb-0  mb-2 justify-center align-middle space-y-2 sm:space-y-0 sm:space-x-3">
         <CardTitle className="  text-center items-center justify-center space-y-1 sm:space-y-0 sm:space-x-2">
-          <span className="text-2xl sm:text-3xl text-gray-500 font-bold">
-          Vulnerability
-          </span>
           <span className="text-2xl sm:text-3xl text-red-600 font-bold ml-2">
           Timeline
           </span>

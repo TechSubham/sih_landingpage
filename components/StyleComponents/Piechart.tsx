@@ -39,11 +39,8 @@ export function PieChartComponent() {
     <Card className="w-full max-w-3xl mx-auto flex flex-col border-none bg-transparent shadow-none">
       
       <CardTitle className="text-center sm:mt-5 items-center justify-center space-y-1 ">
-        <span className="text-2xl sm:text-3xl lg:text-3xl text-gray-500 font-bold">
-          Severity of
-        </span>
         <span className="text-2xl sm:text-3xl lg:text-3xl text-red-600 font-bold ml-2">
-          Vulnerability
+        Severity
         </span>
       </CardTitle>
 
@@ -95,8 +92,8 @@ export function PieChartComponent() {
         </ChartContainer>
       </CardContent>
 
-      <CardFooter className="text-center text-blue-600 lg:relative lg:bottom-8 px-4">
-        <p className="text-sm sm:text-base lg:text-lg text-muted-foreground text-blue-700 relative bottom-4 ">
+      <CardFooter className="text-center lg:relative mt-4 lg:bottom-8 px-4">
+        <p className="text-sm sm:text-base lg:text-lg text-muted-foreground text-blue-800 relative bottom-4 ">
           We provide you information about the Severity of the Vulnerability
           received
         </p>
