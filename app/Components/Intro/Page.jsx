@@ -1,4 +1,5 @@
 "use client";
+
 import React from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link';
@@ -6,14 +7,14 @@ import Button from '@/app/Elements/Button/page';
 import Image from 'next/image';
 import Mobilebg from '../../../public/mobile.png';
 
-const paje = () => {
+const Page = () => {
   return (
-    <div>
-      <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1">
+    <div className="container mx-auto px-4">
+      <div className="grid lg:grid-cols-2 gap-8 items-center">
         <div className="text-black">
-          <div className="ml-9 mt-20 lg:mt-52 lg:ml-32 md:ml-16 sm:ml-12">
+          <div className="mt-12 lg:mt-12">
             <motion.h1
-              className="font-bold text-lg sm:text-2xl text-gray-600 h-10"
+              className="font-bold text-xl md:text-2xl text-gray-600 mb-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
@@ -31,7 +32,7 @@ const paje = () => {
             </motion.h1>
 
             <motion.p
-              className="text-5xl md:text-4xl lg:text-5xl font-extrabold text-white lg:h-14 md:h-12 sm:h-10"
+              className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-2"
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
@@ -40,7 +41,7 @@ const paje = () => {
             </motion.p>
 
             <motion.p
-              className="text-5xl md:text-4xl lg:text-5xl font-extrabold text-blue-600 lg:h-14 md:h-12 sm:h-10"
+              className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-blue-600 mb-2"
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
@@ -49,7 +50,7 @@ const paje = () => {
             </motion.p>
 
             <motion.p
-              className="text-5xl md:text-4xl lg:text-5xl font-extrabold text-white lg:h-14 md:h-12 sm:h-10"
+              className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-8"
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
@@ -60,7 +61,7 @@ const paje = () => {
 
           <Link href="https://rvrs.teamqubit.in/SignUp">
             <motion.div
-              className="mt-5 ml-10 lg:ml-72 md:ml-48"
+              className="mt-8"
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
@@ -70,21 +71,16 @@ const paje = () => {
           </Link>
         </div>
         <motion.div
-          className="text-black md:mt-8 lg:mt-0"
+          className="mt-8 lg:mt-0"
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          <Image 
-            src={Mobilebg} 
-            alt="mobilebg" 
-            className="mt-8 md:mx-auto lg:mx-0"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
+          <Image src={Mobilebg} alt="mobilebg" className="w-full h-auto" />
         </motion.div>
       </div>
     </div>
   )
 }
 
-export default paje
+export default Page
