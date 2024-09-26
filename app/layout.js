@@ -1,16 +1,7 @@
-import localFont from "next/font/local";
+import {Plus_Jakarta_Sans} from "next/font/google";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const newfont = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Real Time Vulnerability Reporting System | Qubit",
@@ -21,10 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+        className={newfont.variable }>{children}</body>
     </html>
   );
 }

@@ -9,13 +9,13 @@ const page = () => {
   return (
     <div>
       <div class="container">
-        <div data-text="Github" style={{ "--r": "-15;" }} class=" glass">
+        <div style={{ "--r": "-15;" }} class="glass">
           <PieChartComponent />
         </div>
-        <div data-text="Code" style={{ "--r": "5;" }} class="glass">
+        <div style={{ "--r": "5;" }} class="glass">
           <LineChartComponent />
         </div>
-        <div data-text="Earn" style={{ "--r": "25;" }} class="glass">
+        <div style={{ "--r": "25;" }} class="glass">
             <Alert/>
         </div>
       </div>

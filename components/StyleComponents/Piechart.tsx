@@ -93,7 +93,7 @@ export function PieChartComponent() {
       </CardContent>
 
       <CardFooter className="text-center lg:relative mt-4 lg:bottom-8 px-4">
-        <p className="text-sm sm:text-base lg:text-lg text-muted-foreground text-blue-800 relative bottom-4 ">
+        <p className="text-sm sm:text-base lg:text-lg text-muted-foreground text-blue-700 relative bottom-4 ">
           We provide you information about the Severity of the Vulnerability
           received
         </p>
